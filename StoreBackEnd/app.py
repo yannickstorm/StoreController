@@ -22,14 +22,13 @@ def moveStore(id, dir):
 
     print("Store nbr: " + str(id) + " ,  direction: " + str(dir))
     storeController.transmitCommand(id, dir)
-    return 'There was a problem deleting that task'
+    return redirect('/store/')
 
 
 @app.route('/store/')
 def storeDisplay():
 
     storeList = storeController.clusterOfStores.listOfStores
-    print(storeList)
     return render_template('index.html', tasks=storeList)
 
 
