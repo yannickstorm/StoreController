@@ -33,6 +33,28 @@ class StoreController:
     def transmitCommand(self, id, cmd):
 
         with cc1101.CC1101(lock_spi_device=True) as transceiver:
+            print("defaults:", transceiver)
+            transceiver.set_base_frequency_hertz(868.34e6)
+            transceiver.set_symbol_rate_baud(2400)
+            transceiver._set_modulation_format(0b000)
+            transceiver.set_sync_mode(cc1101.SyncMode.NO_PREAMBLE_AND_SYNC_WORD)
+            # transceiver.set_sync_mode(cc1101.SyncMode.NO_PREAMBLE_AND_SYNC_WORD)
+            # transceiver.set_preamble_length_bytes(2)
+            # transceiver.set_sync_word(b"\x12\x34")
+            transceiver.disable_checksum()
+            transceiver.set_output_power((0, 0xC2))  # 
+            print(transceiver)
+            print("state", transceiver.get_marc_state().name)
+            print("base frequency", transceiver.get_base_frequency_hertz(), "Hz")
+            print("symbol rate", transceiver.get_symbol_rate_baud(), "Baud")
+            print("modulation format", transceiver.get_modulation_format().name)
+            sync_mode = transceiver.get_sync_mode()
+            print("sync mode", sync_mode)
+            if sync_mode != cc1101.SyncMode.NO_PREAMBLE_AND_SYNC_WORD:
+                print("preamble length", transceiver.get_preamble_length_bytes(), "bytes")
+                print("sync word", transceiver.get_sync_word())
+            print("output power settings (patable)", transceiver.get_output_power())
+            
             print("\nstarting transmission")
             transceiver.transmit(bytes([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x61,0xE1,0xEC,0xCC,0xAA,0xCC,0xB3,0x34,0xCD,0x2D,0x53,0x33,0x4C,0xAB,0x32,0xCA,0xD5,0x4A,0xD0,0x1E,0xCC,0xCA,0xAC,0xCB,0x33,0x4C,0xD2,0xD5,0x33,0x34,0xCA,0xB3,0x2C,0xAD,0x54,0xAD]))
             time.sleep(1.0)
