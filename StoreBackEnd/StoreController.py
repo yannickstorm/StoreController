@@ -32,7 +32,7 @@ class StoreController:
 
     def __init__(self):
 
-        self.clusterOfStores = clusterOfStores("System open space")
+        self.clusterOfStores = ClusterOfStores("System open space")
 
         with cc1101.CC1101(lock_spi_device=True) as transceiver:
             print("defaults:", transceiver)
