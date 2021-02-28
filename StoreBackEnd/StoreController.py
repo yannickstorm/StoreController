@@ -20,13 +20,13 @@ class ClusterOfStores:
 
     def __init__(self, name):
         self.name = name
-        self.ClusterOfStores = []
+        self.listOfStores = []
 
-        self.ClusterOfStores.append( StoreCmdSet(1) ) 
-        self.ClusterOfStores.append( StoreCmdSet(2) ) 
-        self.ClusterOfStores.append( StoreCmdSet(3) ) 
-        self.ClusterOfStores.append( StoreCmdSet(4) ) 
-        self.ClusterOfStores.append( StoreCmdSet(5) ) 
+        self.listOfStores.append( StoreCmdSet(1) ) 
+        self.listOfStores.append( StoreCmdSet(2) ) 
+        self.listOfStores.append( StoreCmdSet(3) ) 
+        self.listOfStores.append( StoreCmdSet(4) ) 
+        self.listOfStores.append( StoreCmdSet(5) ) 
 
 class StoreController:
 
@@ -83,6 +83,6 @@ class StoreController:
                 print("output power settings (patable)", transceiver.get_output_power())
 
                 print("\nstarting transmission")
-                transceiver.transmit(self.clusterOfStores[id].listCmd[cmd])
+                transceiver.transmit(self.clusterOfStores.listOfStores[id].listCmd[cmd])
         except:
             print("Unable to send command")
