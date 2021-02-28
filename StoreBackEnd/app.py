@@ -19,20 +19,20 @@ class Todo(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    if request.method == 'POST':
-        task_content = request.form['content']
-        new_task = Todo(content=task_content)
+    # if request.method == 'POST':
+    #     task_content = request.form['content']
+    #     new_task = Todo(content=task_content)
 
-        try:
-            db.session.add(new_task)
-            db.session.commit()
-            return redirect('/')
-        except:
-            return 'There was an issue adding your task'
+    #     try:
+    #         db.session.add(new_task)
+    #         db.session.commit()
+    #         return redirect('/')
+    #     except:
+    #         return 'There was an issue adding your task'
 
-    else:
-        tasks = Todo.query.order_by(Todo.date_created).all()
-        return render_template('index.html', tasks=tasks)
+    # else:
+    #     tasks = Todo.query.order_by(Todo.date_created).all()
+    #     return render_template('index.html', tasks=tasks)
 
 
 @app.route('/delete/<int:id>')
@@ -78,7 +78,7 @@ def moveStore(id, dir):
     return 'There was a problem deleting that task'
 
 
-@app.route('/Store')
+@app.route('/Store/')
 def storeDisplay():
 
     storeList = storeController.clusterOfStores.listOfStores
