@@ -82,6 +82,7 @@ def moveStore(id, dir):
 def storeDisplay():
 
     storeList = storeController.clusterOfStores.listOfStores
+    print(storeList)
     return render_template('index.html', tasks=storeList)
 
 
