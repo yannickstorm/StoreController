@@ -6,7 +6,7 @@ from StoreController import StoreController
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
-transceiver = StoreController()
+storeController = StoreController()
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -74,8 +74,16 @@ def jsonReceive():
 def moveStore(id, dir):
 
     print("Store nbr: " + str(id) + " ,  direction: " + str(dir))
-    transceiver.transmitCommand(id, dir)
+    storeController.transmitCommand(id, dir)
     return 'There was a problem deleting that task'
+
+
+@app.route('/Store')
+def index():
+
+    storeList = storeController.clusterOfStores.listOfStores
+    return render_template('index.html', tasks=storeList)
+
 
 if __name__ == "__main__":
     app.run(host= '0.0.0.0')

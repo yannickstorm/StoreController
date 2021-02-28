@@ -19,12 +19,14 @@
         </tr>
         {% for task in tasks %}
             <tr>
-                <td>{{ task.content }}</td>
-                <td>{{ task.date_created.date() }}</td>
+                <td>{{ task.id }}</td>
+                <td>{{ task.id}}</td>
                 <td>
-                    <a href="/delete/{{task.id}}">Delete</a>
+                    <a href="/store/{{task.id}}/0">Stop</a>
                     <br>
-                    <a href="/update/{{task.id}}">Update</a>
+                    <a href="/store/{{task.id}}/1">up</a>
+                    <br>
+                    <a href="/store/{{task.id}}/2">down</a>
                 </td>
             </tr>
         {% endfor %}
