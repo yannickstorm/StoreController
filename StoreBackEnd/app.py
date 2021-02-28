@@ -79,7 +79,7 @@ def moveStore(id, dir):
 
 
 @app.route('/Store')
-def index():
+def storeDisplay():
 
     storeList = storeController.clusterOfStores.listOfStores
     return render_template('index.html', tasks=storeList)
