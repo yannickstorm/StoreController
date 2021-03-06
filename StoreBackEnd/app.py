@@ -43,7 +43,7 @@ def send_js(path):
 
 @app.route('/static/css/<path:path>')
 def send_css(path):
-    return send_from_directory('css', path)
+    return send_from_directory('static/css', path)
 
 if __name__ == "__main__":
     app.run(host= '0.0.0.0')
