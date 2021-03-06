@@ -8,7 +8,7 @@ function sendCommandToStore(store, cmd) {
   //.then(response => response.json())
   //.then(data => console.log(data));
 
-  var pathToBackEnd = "http://storecontrolstation:5000/store/"
+  var pathToBackEnd = "http://storecontrolstation.local:5000/store/"
   fetch(pathToBackEnd + String(store) + "/" + String(cmd));
 }
 
