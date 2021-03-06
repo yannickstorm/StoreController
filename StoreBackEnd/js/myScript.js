@@ -4,24 +4,13 @@
 function sendCommandToStore(store, cmd) {
   document.getElementById("demo").innerHTML = "Paragraph changed.";
 
-  //fetch('http://localhost:5000/store/1/0')
-  //.then(response => response.json())
-  //.then(data => console.log(data));
-
-  //var pathToBackEnd = "http://localhost:5000/store/"
-  var pathToBackEnd = "http://storecontrolstation.local:5000/store/"
-  //fetch(pathToBackEnd + String(store) + "/" + String(cmd));
-
-
-  postData(pathToBackEnd + String(store) + "/" + String(cmd), { answer: 42 })
-  .then(data => {
-    console.log(data); // JSON data parsed by `data.json()` call
-  });
+  console.log(window.location.protocol + "//" + window.location.host + "/store/" + String(store) + "/" + String(cmd));
+  getData(window.location.protocol + "//" + window.location.host + "/store/" + String(store) + "/" + String(cmd));
 }
 
 
-// Example POST method implementation:
-async function postData(url = '', data = {}) {
+// Example GET method implementation:
+async function getData(url = '') {
   // Default options are marked with *
   const response = await fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -35,7 +24,6 @@ async function postData(url = '', data = {}) {
     redirect: 'follow', // manual, *follow, error
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
   });
-  return response.json(); // parses JSON response into native JavaScript objects
 }
 
 
