@@ -1,20 +1,19 @@
 from flask import Flask, render_template, url_for, request, redirect, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from DummyController import DummyController
-
-dummyMode = True
+import sys
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
-if dummyMode == True:
-    storeController = DummyController()
-else:
+try:
     from StoreController import StoreController
     storeController = StoreController()
-
+except ImportError:
+    print("WARNING: importing CC1101 module. Continue in dummy mode.")
+    from DummyController import DummyController
+    storeController = DummyController()
 
 @app.route('/json_post', methods = ['POST'])
 def jsonReceive():
