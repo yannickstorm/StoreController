@@ -23,11 +23,11 @@
                 <td>{{ task.id }}</td>
                 <td>{{ task.id}}</td>
                 <td>
-                    <a href="/store/{{task.id}}/0">Stop</a>
+                    <button type="button" onclick="sendCommandToStore({{task.id}},0)">Stop</button>
                     <br>
-                    <a href="/store/{{task.id}}/1">up</a>
+                    <button type="button" onclick="sendCommandToStore({{task.id}},1)">Up</button>
                     <br>
-                    <a href="/store/{{task.id}}/2">down</a>
+                    <button type="button" onclick="sendCommandToStore({{task.id}},2)">Down</button>
                 </td>
             </tr>
         {% endfor %}
@@ -48,7 +48,7 @@
 
     <p id="demo">A Paragraph.</p>
 
-    <button type="button" onclick="myFunction()">Try it</button>
+    <button type="button" onclick="sendCommandToStore(1,1)">Try it</button>
 
     <p>(myFunction is stored in an external file called "myScript.js")</p>
 
