@@ -22,6 +22,7 @@ class ClusterOfStores:
         self.name = name
         self.listOfStores = []
 
+        self.listOfStores.append( StoreCmdSet(0) ) 
         self.listOfStores.append( StoreCmdSet(1) ) 
         self.listOfStores.append( StoreCmdSet(2) ) 
         self.listOfStores.append( StoreCmdSet(3) ) 
