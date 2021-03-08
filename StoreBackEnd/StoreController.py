@@ -8,21 +8,25 @@ class StoreCmdSet:
     def __init__(self, id):
         self.id = id
         self.listCmd = []
-        
-        self.listCmd.append( bytes.fromhex("C3C3D96999A5AA66A99969A95A95A9A96AA95C3D96999A5AA66A99969A95A95A9A96AA95") )
-        self.listCmd.append( bytes.fromhex("61E1EAB4D2B3534CCCCD34CB2D3352B54AB2AE1EAB4D2B3534CCCCD34CB2D3352B54AB2A") )
-        self.listCmd.append( bytes.fromhex("61E1ED2CB4D4D2CACAAAAB2B354CD32B4D55301ED2CB4D4D2CACAAAAB2B354CD32B4D553") )
 
     def print(self):
         print("Store: " + self.id)
+
+    def configureCmd(self, cmdStop, cmdUp, cmdDown):
+
+        self.listCmd.append( bytes.fromhex(cmdStop) ) # Stop command
+        self.listCmd.append( bytes.fromhex(cmdUp) ) # Up command
+        self.listCmd.append( bytes.fromhex(cmdDown) ) # Down command
+
  
 class ClusterOfStores:
 
     def __init__(self, name):
         self.name = name
         self.listOfStores = []
-
+        
         self.listOfStores.append( StoreCmdSet(0) ) 
+        self.listOfStores[-1].configureCmd("C3C3D96999A5AA66A99969A95A95A9A96AA95C3D96999A5AA66A99969A95A95A9A96AA95", "61E1ED2CB4D4D2CACAAAAB2B354CD32B4D55301ED2CB4D4D2CACAAAAB2B354CD32B4D553", "61E1EAB4D2B3534CCCCD34CB2D3352B54AB2AE1EAB4D2B3534CCCCD34CB2D3352B54AB2A")
         self.listOfStores.append( StoreCmdSet(1) ) 
         self.listOfStores.append( StoreCmdSet(2) ) 
         self.listOfStores.append( StoreCmdSet(3) ) 
